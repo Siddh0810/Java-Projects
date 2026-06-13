@@ -5,8 +5,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) {
+        
 //      This line will create the spring container and the configuration to that container is also mentioned "spring.xml"
 //      so now spring got to know what all type of classes and objects spring need to create and also
 //      give the container where the objects are stored.
