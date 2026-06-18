@@ -1,0 +1,49 @@
+Spring - Java Based Configuration
+
+   ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml"); 	    [XML Based Configuration]
+
+-> ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);    [JAVA Based Configuration]
+	This is used to add java based configuration. AppConfig.class is present in config package.
+		
+		Desktop dt = context.getBean(Desktop.class);
+				OR
+		Desktop dt = context.getBean("aliasName",Desktop.class);
+
+
+		@Configuration
+		AppConfig.java: 
+		
+
+			@Bean      
+			public Desktop desktop(){
+				return new Desktop()
+			}
+	-> @Bean annotation will allow spring to create object for that class.
+	-> @Configuration annotation will be added to AppConfig class to mention that class as a configuration class.
+
+	-> Name of the Bean is the method name mentioned in AppConfig class. or We can Also name as @Bean(name = "aliasName")
+		@Bean(name = {"aliasName","aliasName2","aliasName3"})  -- we can also create arrays of name to given
+		public Desktop aliasName(){
+			return new Desktop;
+		}
+		so in this either we change the method name or mentioned the name in the @Bean annotation as mentioned above.
+
+
+
+----------------------------------------------------------------------------
+
+Spring Boot REST Annotations :
+
+@RestController
+@Data
+@NoArgsController
+@AllArgsController
+@RequestBody
+@PathVariable() // @PathVariable("postId")
+@ResponseBody
+@CrossOrigin(origins = "http://localhost:3000")
+
+
+To restrict the response/request data of particular type:
+@GetMapping(path="jobPosts",produces = {"application/json"}
+@PostMapping(path = "jobPost", consumes = {"application/json","application/xml"}
