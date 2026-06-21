@@ -1,5 +1,8 @@
 package com.java.spring_boot_rest.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,12 +14,47 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class JobPost {
 
+    @Id
     private int postId;
     private String postProfile;
     private String postDesc;
     private int reqExperience;
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
+
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
+    public JobPost(int id) {
+        this.postId = id;
+    }
 
     public int getPostId() {
         return postId;
@@ -50,13 +88,4 @@ public class JobPost {
         this.reqExperience = reqExperience;
     }
 
-    public List<String> getPostTechStack() {
-        return postTechStack;
-    }
-
-    public void setPostTechStack(List<String> postTechStack) {
-        this.postTechStack = postTechStack;
-    }
-
-    private List<String> postTechStack;
 }

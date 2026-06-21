@@ -3,45 +3,20 @@ package com.java.spring_boot_rest.repo;
 import com.java.spring_boot_rest.model.JobPost;
 import java.util.List;
 import java.util.ArrayList;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JobRepo {
+public interface JobRepo extends JpaRepository<JobPost,Integer> {
 
-    private List<JobPost> jobs = new ArrayList<>();
+//    @Query("select j from JobPost j where j.postProfile = ?1")
+//    List<JobPost> findByName(String postProfile);
 
-    public List<JobPost> getAllJobs() {
-        return jobs;
-    }
+    List<JobPost> findByPostProfileContaining(String jobProfile);
 
-    public JobPost saveJobPost(JobPost post)
-    {
-        jobs.add(post);
-        return post;
-    }
+    List<JobPost> findByReqExperienceGreaterThan(int experience);
 
-    public JobPost getJob(int postId) {
-        try {
-            return jobs.get(postId-1);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
-    }
-
-    public JobPost updateJobPost(JobPost post){
-        try {
-            for(JobPost job : jobs){
-                if (job.getPostId() == post.getPostId()){
-                    job.setPostDesc(post.getPostDesc());
-                    job.setPostTechStack(post.getPostTechStack());
-                    job.setReqExperience(post.getReqExperience());
-                    job.setPostProfile(post.getPostProfile());
-                    return job;
-                }
-            }
-            return null;
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
-    }
+    List<JobPost> findByPostProfileContainingOrPostDescContaining(String jobProfile, String description);
 }
