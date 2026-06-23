@@ -1,8 +1,6 @@
 package com.java.spring_boot_rest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +16,7 @@ import java.util.List;
 public class JobPost {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postId;
     private String postProfile;
     private String postDesc;
