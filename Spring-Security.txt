@@ -1,0 +1,10 @@
+Application.properties:
+
+How to work with Post, Update and Delete request ?
+There are 2 ways : 
+
+-> send the csrf token in headers along with post, update or delete request.
+
+server.servlet.session.cookie.same-site=strict
+-> This will not allow third party site to access any of the requests. This will also not need to send csrf token to verify.
+
